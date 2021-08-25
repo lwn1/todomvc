@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <span class="todo-count">
-      <strong>{{todos.length}}</strong>
+      <strong>{{ todosLength }}</strong>
       items left
     </span>
     <ul class="filters">
@@ -16,9 +16,17 @@
 <script>
 export default {
   name: "Footer",
-  props: ['todos'],
-  
-  
+  props: ["todos"],
+  computed: {
+    todosLength() {
+      let i = 0;
+      this.todos.filter(todo => {
+        if (!todo.done) 
+        i++;
+      });
+      return i;
+    },
+  },
 };
 </script>
 
@@ -55,15 +63,15 @@ export default {
 .filters li a.selected {
   border-color: rgba(175, 47, 47, 0.2);
 }
-.footer .clear{
-    /* display: none; */
-    position: relative;
-    float: right;
-    line-height: 20px;
-    cursor: pointer;
-    background: none;
-    font-size: 100%;
-    border: none;
-    color: #777;
+.footer .clear {
+  /* display: none; */
+  position: relative;
+  float: right;
+  line-height: 20px;
+  cursor: pointer;
+  background: none;
+  font-size: 100%;
+  border: none;
+  color: #777;
 }
 </style>

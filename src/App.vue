@@ -1,7 +1,7 @@
 <template>
   <section class="title">
     <TodoHeader @addLi="addLi" />
-    <TodoList :todos="todos" :clearTodos="clearTodos" />
+    <TodoList :todos="todos" :clearTodos="clearTodos" @checkAll='checkAll'/>
     <TodoFooter :todos="todos" />
   </section>
 </template>
@@ -32,6 +32,10 @@ export default {
       // 删除掉相同id的对象
       this.todos = this.todos.filter((todo) => todo.id !== id);
     },
+    checkAll(e){
+      
+      console.log(e)
+    }
   },
 };
 </script>

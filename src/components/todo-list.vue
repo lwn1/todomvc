@@ -1,6 +1,6 @@
 <template>
   <section class="main">
-    <input id="toggle-all" class="toggle-all" type="checkbox" @click="checkAll"/>
+    <input id="toggle-all" class="toggle-all" type="checkbox" @click="checkedAll"/>
     <label for="toggle-all"></label>
     <ul class="todo-list">
       <ListLi
@@ -23,8 +23,9 @@ export default {
   },
   props: ["todos", "clearTodos"],
   methods: {
-    checkAll(e){
-      console.log(e.target.checked,'1')
+    checkedAll(e){
+      this.$emit('checkAll',e.target.checked)
+      // console.log(e.target.checked)
     }
   }
 };
