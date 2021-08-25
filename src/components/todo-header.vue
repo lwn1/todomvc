@@ -1,13 +1,35 @@
 <template>
   <header class="header">
     <h1>todos</h1>
-    <input class="input" placeholder="What needs to be done?" v-model="value"/>
+    <input
+      class="input"
+      placeholder="What needs to be done?"
+      autofocus
+      v-model="index"
+      @keyup.enter="addValue"
+     
+    />
   </header>
 </template>
 
 <script>
 export default {
   name: "Header",
+  data() {
+    return {
+      count: 0,
+      index: "",
+    };
+  },
+  methods: {
+    addValue() {
+      if(!this.index) return
+      const todoObj = { id: this.count++, value: this.index, done: false };
+      this.$emit('addLi',todoObj)
+      this.index = "";
+    },
+    
+  },
 };
 </script>
 

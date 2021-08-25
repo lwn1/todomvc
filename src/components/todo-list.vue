@@ -1,8 +1,15 @@
 <template>
   <section class="main">
-    <input id="toggle-all" class="toggle-all" type="checkbox" />
+    <input id="toggle-all" class="toggle-all" type="checkbox" @click="checkAll"/>
     <label for="toggle-all"></label>
-    <ListLi />
+    <ul class="todo-list">
+      <ListLi
+        v-for="todo in todos"
+        :key="todo.id"
+        :title="todo"
+        :clearTodos="clearTodos"
+      />
+    </ul>
   </section>
 </template>
 
@@ -14,6 +21,12 @@ export default {
   components: {
     ListLi,
   },
+  props: ["todos", "clearTodos"],
+  methods: {
+    checkAll(e){
+      console.log(e.target.checked,'1')
+    }
+  }
 };
 </script>
 

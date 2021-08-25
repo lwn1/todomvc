@@ -1,22 +1,37 @@
 <template>
   <section class="title">
-    <Header />
-    <List />
-    <Footer />
+    <TodoHeader @addLi="addLi" />
+    <TodoList :todos="todos" :clearTodos="clearTodos" />
+    <TodoFooter :todos="todos" />
   </section>
 </template>
 
 <script>
-import Footer from "./components/todo-footer.vue";
-import Header from "./components/todo-header.vue";
-import List from "./components/todo-list.vue";
+import TodoFooter from "./components/todo-footer.vue";
+import TodoHeader from "./components/todo-header.vue";
+import TodoList from "./components/todo-list.vue";
 
 export default {
   name: "App",
   components: {
-    Footer,
-    Header,
-    List,
+    TodoFooter,
+    TodoHeader,
+    TodoList,
+  },
+  data() {
+    return {
+      todos: [],
+    };
+  },
+  methods: {
+    // 添加一个todo
+    addLi(todoObj) {
+      this.todos.push(todoObj);
+    },
+    clearTodos(id) {
+      // 删除掉相同id的对象
+      this.todos = this.todos.filter((todo) => todo.id !== id);
+    },
   },
 };
 </script>
