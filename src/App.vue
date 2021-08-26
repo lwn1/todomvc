@@ -1,7 +1,12 @@
 <template>
   <section class="title">
     <TodoHeader @addLi="addLi" />
-    <TodoList :todos="todos" :clearTodos="clearTodos" @checkAll="checkAll"/>
+    <TodoList
+      :todos="todos"
+      :clearTodos="clearTodos"
+      @checkAll="checkAll"
+      :fulfill="fulfill"
+    />
     <TodoFooter
       :todos="todos"
       @clearTrue="clearTrue"
@@ -26,9 +31,9 @@ export default {
   },
   data() {
     return {
-      todos: JSON.parse(localStorage.getItem('todos')) || [],
-      a:[],
-      
+      todos: JSON.parse(localStorage.getItem("todos")) || [],
+      fulfill: [],
+      // cancel: [],
     };
   },
   methods: {
@@ -49,30 +54,36 @@ export default {
       });
     },
     allChecked() {
-      return this.todos
+      
+      return this.todos;
     },
     allFalse() {
       const unfinished = this.todos.filter((todo) => {
         return !todo.done;
       });
-      this.a.push(unfinished)
+      console.log(unfinished);
+
+      this.fulfill.push(unfinished);
+
+      console.log(this.fulfill);
     },
     allTrue() {
-      this.todos = this.todos.filter((todo) => {
+      const b = this.todos.filter((todo) => {
         return todo.done;
       });
+      console.log(b);
+      // this.cancel.push(b);
     },
   },
   watch: {
-    todos:{
-      deep:true,
-      handler(value){
-        localStorage.setItem('todos',JSON.stringify(value))
-
-      }
-    }
+    todos: {
+      deep: true,
+      handler(value) {
+        localStorage.setItem("todos", JSON.stringify(value));
+      },
+    },
   },
-  computed: {},
+  
 };
 </script>
 
