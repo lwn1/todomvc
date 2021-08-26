@@ -2,7 +2,13 @@
   <section class="title">
     <TodoHeader @addLi="addLi" />
     <TodoList :todos="todos" :clearTodos="clearTodos" @checkAll="checkAll" />
-    <TodoFooter :todos="todos" />
+    <TodoFooter
+      :todos="todos"
+      @clearTrue="clearTrue"
+      @allFalse="allFalse"
+      @allTrue="allTrue"
+      @allCheck="allCheck"
+    />
   </section>
 </template>
 
@@ -33,9 +39,28 @@ export default {
       this.todos = this.todos.filter((todo) => todo.id !== id);
     },
     checkAll(e) {
-      this.todos.forEach(todo => todo.done = e);
+      this.todos.forEach((todo) => (todo.done = e));
+    },
+    clearTrue() {
+      this.todos = this.todos.filter((todo) => {
+        return !todo.done;
+      });
+    },
+    allCheck() {
+      return this.todos
+    },
+    allFalse() {
+      this.todos = this.todos.filter((todo) => {
+        return !todo.done;
+      });
+    },
+    allTrue() {
+      this.todos = this.todos.filter((todo) => {
+        return todo.done;
+      });
     },
   },
+  computed: {},
 };
 </script>
 

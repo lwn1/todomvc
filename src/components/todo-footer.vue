@@ -1,15 +1,15 @@
 <template>
-  <footer class="footer">
+  <footer class="footer" v-if="todos.length">
     <span class="todo-count">
       <strong>{{ todosLength }}</strong>
       items left
     </span>
     <ul class="filters">
-      <li><a href="#/" class="selected">All</a></li>
-      <li><a href="#/active">Active</a></li>
-      <li><a href="#/completed">completed</a></li>
+      <li><a @click="all" href="#/" class="selected">All</a></li>
+      <li><a @click='activeAll' href="#/active">Active</a></li>
+      <li><a @click='finishAll' href="#/completed">completed</a></li>
     </ul>
-    <button class="clear">Clear completed</button>
+    <button class="clear" @click="clearAll">Clear completed</button>
   </footer>
 </template>
 
@@ -20,13 +20,26 @@ export default {
   computed: {
     todosLength() {
       let i = 0;
-      this.todos.filter(todo => {
-        if (!todo.done) 
-        i++;
+      this.todos.filter((todo) => {
+        if (!todo.done) i++;
       });
       return i;
     },
   },
+  methods: {
+    clearAll(){
+      this.$emit('clearTrue')
+    },
+    activeAll(){
+      this.$emit('allFalse')
+    },
+    finishAll(){
+      this.$emit('allTrue')
+    },
+    all(){
+      this.$emit('allCheck')
+    }
+  }
 };
 </script>
 
