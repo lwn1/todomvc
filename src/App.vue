@@ -1,13 +1,13 @@
 <template>
   <section class="title">
     <TodoHeader @addLi="addLi" />
-    <TodoList :todos="todos" :clearTodos="clearTodos" @checkAll="checkAll" />
+    <TodoList :todos="todos" :clearTodos="clearTodos" @checkAll="checkAll"/>
     <TodoFooter
       :todos="todos"
       @clearTrue="clearTrue"
       @allFalse="allFalse"
       @allTrue="allTrue"
-      @allCheck="allCheck"
+      @allChecked="allChecked"
     />
   </section>
 </template>
@@ -26,7 +26,9 @@ export default {
   },
   data() {
     return {
-      todos: [],
+      todos: JSON.parse(localStorage.getItem('todos')) || [],
+      a:[],
+      
     };
   },
   methods: {
@@ -46,19 +48,29 @@ export default {
         return !todo.done;
       });
     },
-    allCheck() {
+    allChecked() {
       return this.todos
     },
     allFalse() {
-      this.todos = this.todos.filter((todo) => {
+      const unfinished = this.todos.filter((todo) => {
         return !todo.done;
       });
+      this.a.push(unfinished)
     },
     allTrue() {
       this.todos = this.todos.filter((todo) => {
         return todo.done;
       });
     },
+  },
+  watch: {
+    todos:{
+      deep:true,
+      handler(value){
+        localStorage.setItem('todos',JSON.stringify(value))
+
+      }
+    }
   },
   computed: {},
 };

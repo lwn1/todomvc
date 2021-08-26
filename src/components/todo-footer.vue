@@ -37,7 +37,7 @@ export default {
       this.$emit('allTrue')
     },
     all(){
-      this.$emit('allCheck')
+      this.$emit('allChecked')
     }
   }
 };
