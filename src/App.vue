@@ -2,11 +2,10 @@
   <section class="title">
     <TodoHeader @addLi="addLi" />
     <TodoList
-      :todos="todos"
+      :todos="list"
       :clearTodos="clearTodos"
       @checkAll="checkAll"
-      :unfinished='unfinished'
-      :fulfill='fulfill'
+      
     />
     <TodoFooter
       :todos="todos"
@@ -36,8 +35,7 @@ export default {
   data() {
     return {
       todos: JSON.parse(localStorage.getItem("todos")) || [],
-      unfinished: [],
-      fulfill:[]
+      list: JSON.parse(localStorage.getItem("todos")) || []
     };
   },
   methods: {
@@ -48,27 +46,34 @@ export default {
     clearTodos(id) {
       // 删除掉相同id的对象
       this.todos = this.todos.filter((todo) => todo.id !== id);
+      this.list = this.list.filter((todo) => todo.id !== id);
     },
+    // 点击全选
     checkAll(e) {
       this.todos.forEach((todo) => (todo.done = e));
     },
+    // 清除所有已勾选的
     clearTrue() {
       this.todos = this.todos.filter((todo) => {
         return !todo.done;
       });
-    },
-    allChecked() {
-      
-      return this.todos;
-    },
-    allFalse() {
-      this.unfinished = this.todos.filter((todo) => {
+      this.list = this.list.filter((todo) => {
         return !todo.done;
       });
-      console.log(this.unfinished);
     },
+    // 显示全部
+    allChecked() {
+      this.list = this.todos
+    },
+    // 筛选出没勾选的
+    allFalse() {
+      this.list = this.todos.filter((todo) => {
+        return !todo.done;
+      });
+    },
+    // 筛选出勾选的
     allTrue() {
-      this.fulfill = this.todos.filter((todo) => {
+      this.list = this.todos.filter((todo) => {
         return todo.done;
       });
     },

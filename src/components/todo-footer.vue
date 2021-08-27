@@ -5,7 +5,7 @@
       items left
     </span>
     <ul class="filters">
-      <li><a @click="all" href="#/" class="selected">All</a></li>
+      <li><a @click="allCheck" href="#/" class="selected">All</a></li>
       <li><a @click='activeAll' href="#/active">Active</a></li>
       <li><a @click='finishAll' href="#/completed">completed</a></li>
     </ul>
@@ -36,7 +36,7 @@ export default {
     finishAll(){
       this.$emit('allTrue')
     },
-    all(){
+    allCheck(){
       this.$emit('allChecked')
     }
   }

@@ -14,35 +14,19 @@
         :title="todo"
         :clearTodos="clearTodos"
       />
-      <TodoUnfinished
-        v-for="list in unfinished"
-        :key="list.id"
-        :title="list"
-        :clearTodos="clearTodos"
-      />
-      <TodoFulfill
-        v-for="listing in fulfill"
-        :key="listing.id"
-        :title="listing"
-        :clearTodos="clearTodos"
-      />
     </ul>
   </section>
 </template>
 
 <script>
-import ListLi from "./list-li.vue";
-import TodoUnfinished from "./unfinished-list.vue";
-import TodoFulfill from "./fulfill-list.vue";
+import ListLi from "./list-li.vue"
 
 export default {
   name: "List",
   components: {
     ListLi,
-    TodoUnfinished,
-    TodoFulfill,
   },
-  props: ["todos", "clearTodos", "unfinished",'fulfill'],
+  props: ["todos", "clearTodos",],
   methods: {
     checkedAll(e) {
       this.$emit("checkAll", e.target.checked);
