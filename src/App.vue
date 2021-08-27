@@ -5,7 +5,8 @@
       :todos="todos"
       :clearTodos="clearTodos"
       @checkAll="checkAll"
-      :fulfill="fulfill"
+      :unfinished='unfinished'
+      :fulfill='fulfill'
     />
     <TodoFooter
       :todos="todos"
@@ -14,6 +15,7 @@
       @allTrue="allTrue"
       @allChecked="allChecked"
     />
+
   </section>
 </template>
 
@@ -22,18 +24,20 @@ import TodoFooter from "./components/todo-footer.vue";
 import TodoHeader from "./components/todo-header.vue";
 import TodoList from "./components/todo-list.vue";
 
+
 export default {
   name: "App",
   components: {
     TodoFooter,
     TodoHeader,
     TodoList,
+    
   },
   data() {
     return {
       todos: JSON.parse(localStorage.getItem("todos")) || [],
-      fulfill: [],
-      // cancel: [],
+      unfinished: [],
+      fulfill:[]
     };
   },
   methods: {
@@ -58,21 +62,15 @@ export default {
       return this.todos;
     },
     allFalse() {
-      const unfinished = this.todos.filter((todo) => {
+      this.unfinished = this.todos.filter((todo) => {
         return !todo.done;
       });
-      console.log(unfinished);
-
-      this.fulfill.push(unfinished);
-
-      console.log(this.fulfill);
+      console.log(this.unfinished);
     },
     allTrue() {
-      const b = this.todos.filter((todo) => {
+      this.fulfill = this.todos.filter((todo) => {
         return todo.done;
       });
-      console.log(b);
-      // this.cancel.push(b);
     },
   },
   watch: {
