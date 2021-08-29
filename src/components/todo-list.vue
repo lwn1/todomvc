@@ -13,6 +13,7 @@
         :key="todo.id"
         :title="todo"
         :clearTodos="clearTodos"
+
       />
     </ul>
   </section>

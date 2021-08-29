@@ -10,9 +10,9 @@
     <TodoFooter
       :todos="todos"
       @clearTrue="clearTrue"
-      @allFalse="allFalse"
-      @allTrue="allTrue"
-      @allChecked="allChecked"
+      @allFalse='allFalse'
+      @allTrue='allTrue'
+      @allChecked='allChecked'
     />
 
   </section>
@@ -35,7 +35,7 @@ export default {
   data() {
     return {
       todos: JSON.parse(localStorage.getItem("todos")) || [],
-      list: JSON.parse(localStorage.getItem("todos")) || []
+      list: JSON.parse(localStorage.getItem("todos")) || [],
     };
   },
   methods: {
@@ -77,6 +77,10 @@ export default {
         return todo.done;
       });
     },
+  },
+  computed: {
+    
+    
   },
   watch: {
     todos: {

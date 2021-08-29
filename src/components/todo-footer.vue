@@ -6,8 +6,17 @@
     </span>
     <ul class="filters">
       <li><a @click="allCheck" href="#/" class="selected">All</a></li>
-      <li><a @click='activeAll' href="#/active">Active</a></li>
-      <li><a @click='finishAll' href="#/completed">completed</a></li>
+      <li><a @click="activeAll" href="#/active">Active</a></li>
+      <li><a @click="finishAll" href="#/completed">completed</a></li>
+      <!-- <li>
+        <router-link @click="allCheck" to="#/" class="selected">All</router-link>
+      </li>
+      <li>
+        <router-link @click="activeAll" to="#/active">Active</router-link>
+      </li>
+      <li>
+        <router-link @click="finishAll" to="#/completed">completed</router-link>
+      </li> -->
     </ul>
     <button class="clear" @click="clearAll">Clear completed</button>
   </footer>
@@ -27,19 +36,19 @@ export default {
     },
   },
   methods: {
-    clearAll(){
-      this.$emit('clearTrue')
+    clearAll() {
+      this.$emit("clearTrue");
     },
-    activeAll(){
-      this.$emit('allFalse')
+    activeAll() {
+      this.$emit("allFalse");
     },
-    finishAll(){
-      this.$emit('allTrue')
+    finishAll() {
+      this.$emit("allTrue");
     },
-    allCheck(){
-      this.$emit('allChecked')
-    }
-  }
+    allCheck() {
+      this.$emit("allChecked");
+    },
+  },
 };
 </script>
 
