@@ -5,18 +5,18 @@
       items left
     </span>
     <ul class="filters">
-      <li><a @click="allCheck" href="#/" class="selected">All</a></li>
+      <!-- <li><a @click="allCheck" href="#/" class="selected">All</a></li>
       <li><a @click="activeAll" href="#/active">Active</a></li>
-      <li><a @click="finishAll" href="#/completed">completed</a></li>
-      <!-- <li>
-        <router-link @click="allCheck" to="#/" class="selected">All</router-link>
+      <li><a @click="finishAll" href="#/completed">completed</a></li> -->
+      <li>
+        <router-link @click="allCheck" to="/All" class="selected">All</router-link>
       </li>
       <li>
-        <router-link @click="activeAll" to="#/active">Active</router-link>
+        <router-link @click="activeAll" to="/Active">Active</router-link>
       </li>
       <li>
-        <router-link @click="finishAll" to="#/completed">completed</router-link>
-      </li> -->
+        <router-link @click="finishAll" to="/Completed">completed</router-link>
+      </li>
     </ul>
     <button class="clear" @click="clearAll">Clear completed</button>
   </footer>
