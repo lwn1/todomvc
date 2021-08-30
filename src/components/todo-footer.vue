@@ -8,14 +8,25 @@
       <!-- <li><a @click="allCheck" href="#/" class="selected">All</a></li>
       <li><a @click="activeAll" href="#/active">Active</a></li>
       <li><a @click="finishAll" href="#/completed">completed</a></li> -->
-      <li>
-        <router-link @click="allCheck" to="/All" class="selected">All</router-link>
+
+      <!-- <li>
+        <router-link @click.native="allCheck" to="/All" class="selected">All</router-link>
       </li>
       <li>
-        <router-link @click="activeAll" to="/Active">Active</router-link>
+        <router-link @click.native="activeAll" to="/Active">Active</router-link>
       </li>
       <li>
-        <router-link @click="finishAll" to="/Completed">completed</router-link>
+        <router-link @click.native="finishAll" to="/Completed">completed</router-link>
+      </li> -->
+
+      <li>
+        <router-link to="/All" active-class="selected">All</router-link>
+      </li>
+      <li>
+        <router-link to="/Active" active-class="selected">Active</router-link>
+      </li>
+      <li>
+        <router-link to="/Completed" active-class="selected">completed</router-link>
       </li>
     </ul>
     <button class="clear" @click="clearAll">Clear completed</button>
@@ -25,6 +36,11 @@
 <script>
 export default {
   name: "Footer",
+  data() {
+    return {
+      filterState: "all",
+    };
+  },
   props: ["todos"],
   computed: {
     todosLength() {
@@ -34,6 +50,19 @@ export default {
       });
       return i;
     },
+    // filterItems() {
+    //   switch (this.filterState) {
+    //     case "active":
+    //       this.todos.filter((todo) => !todo.done);
+    //       break;
+    //     case "completed":
+    //       this.todos.filter((todo) => todo.done);
+    //       break;
+    //     default:
+    //       this.todos;
+    //       break;
+    //   }
+    // },
   },
   methods: {
     clearAll() {
@@ -50,6 +79,11 @@ export default {
     },
   },
 };
+// window.onhashchange = function () {
+//   const hash = window.location.hash.substr(2) || "all";
+//   this.filterState = hash;
+// };
+// window.onhashchange()
 </script>
 
 <style>
