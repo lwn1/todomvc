@@ -5,28 +5,29 @@
       items left
     </span>
     <ul class="filters">
-      <!-- <li><a @click="allCheck" href="#/" class="selected">All</a></li>
-      <li><a @click="activeAll" href="#/active">Active</a></li>
-      <li><a @click="finishAll" href="#/completed">completed</a></li> -->
-
-      <!-- <li>
-        <router-link @click.native="allCheck" to="/All" class="selected">All</router-link>
+      <li>
+        <router-link
+          to="/All"
+          active-class="selected"
+          :class="curPage === 'all' ? 'class1' : 'class2'"
+          >All</router-link
+        >
       </li>
       <li>
-        <router-link @click.native="activeAll" to="/Active">Active</router-link>
+        <router-link
+          to="/Active"
+          active-class="selected"
+          :class="curPage === 'active' ? 'class1' : 'class2'"
+          >Active</router-link
+        >
       </li>
       <li>
-        <router-link @click.native="finishAll" to="/Completed">completed</router-link>
-      </li> -->
-
-      <li>
-        <router-link to="/All" active-class="selected">All</router-link>
-      </li>
-      <li>
-        <router-link to="/Active" active-class="selected">Active</router-link>
-      </li>
-      <li>
-        <router-link to="/Completed" active-class="selected">completed</router-link>
+        <router-link
+          to="/Completed"
+          active-class="selected"
+          :class="curPage === 'completed' ? 'class1' : 'class2'"
+          >completed</router-link
+        >
       </li>
     </ul>
     <button class="clear" @click="clearAll">Clear completed</button>
@@ -41,7 +42,7 @@ export default {
       filterState: "all",
     };
   },
-  props: ["todos"],
+  props: ["todos", "curPage"],
   computed: {
     todosLength() {
       let i = 0;
@@ -50,20 +51,8 @@ export default {
       });
       return i;
     },
-    // filterItems() {
-    //   switch (this.filterState) {
-    //     case "active":
-    //       this.todos.filter((todo) => !todo.done);
-    //       break;
-    //     case "completed":
-    //       this.todos.filter((todo) => todo.done);
-    //       break;
-    //     default:
-    //       this.todos;
-    //       break;
-    //   }
-    // },
   },
+  
   methods: {
     clearAll() {
       this.$emit("clearTrue");
@@ -79,11 +68,6 @@ export default {
     },
   },
 };
-// window.onhashchange = function () {
-//   const hash = window.location.hash.substr(2) || "all";
-//   this.filterState = hash;
-// };
-// window.onhashchange()
 </script>
 
 <style>

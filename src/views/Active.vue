@@ -1,20 +1,101 @@
 <template>
-  <div>
-      <!-- <IsActive/> -->
-      <!-- <router-view></router-view> -->
-  </div>
+  <section class="title">
+    <TodoHeader @addLi="addLi" />
+    <TodoList
+      :todos="list"
+      :clearTodos="clearTodos"
+      @checkAll="checkAll"
+      
+    />
+    <TodoFooter
+      :todos="todos"
+      @clearTrue="clearTrue"
+      @allFalse='allFalse'
+      @allTrue='allTrue'
+      @allChecked='allChecked'
+      :curPage="'active'"
+    />
+
+  </section>
 </template>
 
 <script>
-import IsActive from '../components/list-li.vue'
+import TodoFooter from "../components/todo-footer.vue";
+import TodoHeader from "../components/todo-header.vue";
+import TodoList from "../components/todo-list.vue";
+
+
 export default {
-    name:'IsActive',
-    computed:{
-      IsActive
-    }
-}
+  name: "App",
+  components: {
+    TodoFooter,
+    TodoHeader,
+    TodoList,
+    
+  },
+  data() {
+    return {
+      todos: JSON.parse(localStorage.getItem("todos")) || [],
+      list: JSON.parse(localStorage.getItem("todos")).filter(i => !i.done) || [],
+    };
+  },
+  methods: {
+    // 添加一个todo
+    addLi(todoObj) {
+      this.todos.push(todoObj);
+    },
+    clearTodos(id) {
+      // 删除掉相同id的对象
+      this.todos = this.todos.filter((todo) => todo.id !== id);
+      this.list = this.list.filter((todo) => todo.id !== id);
+    },
+    // 点击全选
+    checkAll(e) {
+      this.todos.forEach((todo) => (todo.done = e));
+    },
+    // 清除所有已勾选的
+    clearTrue() {
+      this.todos = this.todos.filter((todo) => {
+        return !todo.done;
+      });
+      this.list = this.list.filter((todo) => {
+        return !todo.done;
+      });
+    },
+    // 显示全部
+    allChecked() {
+      this.list = this.todos
+    },
+    // 筛选出没勾选的
+    allFalse() {
+      this.list = this.todos.filter((todo) => {
+        return !todo.done;
+      });
+    },
+    // 筛选出勾选的
+    allTrue() {
+      this.list = this.todos.filter((todo) => {
+        return todo.done;
+      });
+    },
+  },
+  mounted () {
+    this.$router.to === '/Active'
+    this.curPage = 'active'
+    this.allFalse()
+    console.log('active')
+  },
+  watch: {
+    todos: {
+      deep: true,
+      handler(value) {
+        localStorage.setItem("todos", JSON.stringify(value));
+      },
+    },
+  },
+  
+};
 </script>
 
-<style>
 
-</style>
+
