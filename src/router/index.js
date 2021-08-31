@@ -10,7 +10,17 @@ const routes = [
   {
     path: '/All',
     name: 'all',
-    component:All
+    component:All,
+    // children:[
+    //   {
+    //     path:'Active',
+    //     component:Active
+    //   },
+    //   {
+    //     path:'Completed',
+    //     component:Completed
+    //   }
+    // ]
   },
   {
     path: '/',
