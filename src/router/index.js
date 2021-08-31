@@ -13,6 +13,10 @@ const routes = [
     component:All
   },
   {
+    path: '/',
+    component:All
+  },
+  {
     path:'/Active',
     name:'active',
     component:Active
