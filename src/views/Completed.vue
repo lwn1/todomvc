@@ -80,9 +80,9 @@ export default {
     },
   },
   mounted () {
-    this.$router.to === '/Completed'
-    this.curPage = 'completed'
-    this.allTrue()
+    // this.$router.to === '/Completed'
+    // this.curPage = 'completed'
+    // this.allTrue()
     console.log('component')
   },
   watch: {

@@ -89,7 +89,7 @@ export default {
   },
   mounted () {
     this.$router.to === '/All'
-      this.curPage = 'all'
+      // this.curPage = 'all'
       this.allChecked()
       console.log('all',this)
   },

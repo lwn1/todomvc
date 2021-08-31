@@ -80,9 +80,9 @@ export default {
     },
   },
   mounted () {
-    this.$router.to === '/Active'
-    this.curPage = 'active'
-    this.allFalse()
+    // this.$router.to === '/Active'
+    // this.curPage = 'active'
+    // this.allFalse()
     console.log('active')
   },
   watch: {
