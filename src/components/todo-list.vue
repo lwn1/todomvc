@@ -13,6 +13,7 @@
         :key="todo.id"
         :title="todo"
         :clearTodos="clearTodos"
+        @clearTodos='clearTodos'
       />
       <!-- <router-view></router-view> -->
     </ul>
@@ -27,11 +28,14 @@ export default {
   components: {
     ListLi,
   },
-  props: ["todos", "clearTodos",],
+  props: ["todos",],
   methods: {
     checkedAll(e) {
       this.$emit("checkAll", e.target.checked);
     },
+    clearTodos(id){
+      this.$emit('clearTodos',id)
+    }
   },
 };
 </script>

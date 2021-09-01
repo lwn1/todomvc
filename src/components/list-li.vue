@@ -11,10 +11,10 @@
 <script>
 export default {
   name: "Li",
-  props: ["title", "clearTodos"],
+  props: ["title",],
   methods: {
     clearList(id) {
-      this.clearTodos(id);
+      this.$emit('clearTodos',id)
     },
   },
 };

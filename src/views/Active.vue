@@ -5,7 +5,7 @@
       :todos="list"
       :clearTodos="clearTodos"
       @checkAll="checkAll"
-      
+      @clearTodos='clearTodos'
     />
     <TodoFooter
       :todos="todos"

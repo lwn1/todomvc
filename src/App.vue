@@ -1,9 +1,6 @@
 <template>
   <section class="title">
-    
     <router-view></router-view>
-    <!-- <router-view class="view active" name='Active'></router-view> 
-    <router-view class="view completer" name='Completer'></router-view> -->
   </section>
 </template>
 

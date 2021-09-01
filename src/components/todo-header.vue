@@ -13,18 +13,19 @@
 </template>
 
 <script>
+import {nanoid} from 'nanoid'
+
 export default {
   name: "Header",
   data() {
     return {
-      count: 0,
       index: "",
     };
   },
   methods: {
     addValue() {
       if(!this.index) return
-      const todoObj = { id: this.count++, value: this.index, done: false };
+      const todoObj = { id:nanoid(), value: this.index, done: false };
       this.$emit('addLi',todoObj)
       this.index = "";
     },

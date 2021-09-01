@@ -1,40 +1,28 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Active from '../views/Active.vue'
 import All from '../views/All.vue'
-import Completed from '../views/Completed.vue'
+
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/All',
-    name: 'all',
-    component:All,
-    // children:[
-    //   {
-    //     path:'Active',
-    //     component:Active
-    //   },
-    //   {
-    //     path:'Completed',
-    //     component:Completed
-    //   }
-    // ]
-  },
-  {
     path: '/',
     component:All
   },
   {
+    path: '/All',
+    component:()=>import('../views/All.vue')
+  },
+  {
     path:'/Active',
     name:'active',
-    component:Active
+    component:()=>import('../views/Active.vue')
   },
   {
     path:'/Completed',
     name:'completed',
-    component:Completed
+    component:()=>import('../views/Completed.vue')
   }
 ]
 

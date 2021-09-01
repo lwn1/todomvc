@@ -5,7 +5,7 @@
       :todos="list"
       :clearTodos="clearTodos"
       @checkAll="checkAll"
-      
+      @clearTodos='clearTodos'
     />
     <TodoFooter
       :todos="todos"
@@ -15,7 +15,6 @@
       @allChecked='allChecked'
       :curPage="'completed'"
     />
-
   </section>
 </template>
 
@@ -23,7 +22,6 @@
 import TodoFooter from "../components/todo-footer.vue";
 import TodoHeader from "../components/todo-header.vue";
 import TodoList from "../components/todo-list.vue";
-
 
 export default {
   name: "App",
