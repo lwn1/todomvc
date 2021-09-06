@@ -2,8 +2,7 @@
   <section class="title">
     <TodoHeader @addLi="addLi" />
     <TodoList
-      :todos="list"
-      :clearTodos="clearTodos"
+      :todos="todos"
       @checkAll="checkAll"
       @clearTodos='clearTodos'
     />
@@ -36,7 +35,7 @@ export default {
   data() {
     return {
       todos: JSON.parse(localStorage.getItem("todos")) || [],
-      list: JSON.parse(localStorage.getItem("todos")) || [],
+      // list: JSON.parse(localStorage.getItem("todos")) || [],
     };
   },
   methods: {
@@ -47,7 +46,7 @@ export default {
     clearTodos(id) {
       // 删除掉相同id的对象
       this.todos = this.todos.filter((todo) => todo.id !== id);
-      this.list = this.list.filter((todo) => todo.id !== id);
+      // this.list = this.list.filter((todo) => todo.id !== id);
     },
     // 点击全选
     checkAll(e) {
@@ -58,13 +57,13 @@ export default {
       this.todos = this.todos.filter((todo) => {
         return !todo.done;
       });
-      this.list = this.list.filter((todo) => {
-        return !todo.done;
-      });
+      // this.list = this.list.filter((todo) => {
+      //   return !todo.done;
+      // });
     },
     // 显示全部
     allChecked() {
-      this.list = this.todos
+      return this.todos
     },
     // 筛选出没勾选的
     allFalse() {
@@ -88,9 +87,9 @@ export default {
     },
   },
   mounted () {
-    this.$router.to === '/All'
+    // this.$router.to === '/All'
       // this.curPage = 'all'
-      this.allChecked()
+      // this.allChecked()
       console.log('all',this)
   },
 };

@@ -3,7 +3,6 @@
     <TodoHeader @addLi="addLi" />
     <TodoList
       :todos="list"
-      :clearTodos="clearTodos"
       @checkAll="checkAll"
       @clearTodos='clearTodos'
     />
@@ -80,8 +79,8 @@ export default {
   mounted () {
     // this.$router.to === '/Completed'
     // this.curPage = 'completed'
-    // this.allTrue()
-    console.log('component')
+    this.allTrue()
+    // console.log('component')
   },
   watch: {
     todos: {

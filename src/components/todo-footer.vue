@@ -37,11 +37,6 @@
 <script>
 export default {
   name: "Footer",
-  data() {
-    return {
-      filterState: "all",
-    };
-  },
   props: ["todos", "curPage"],
   computed: {
     todosLength() {

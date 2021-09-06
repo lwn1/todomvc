@@ -11,11 +11,9 @@
       <ListLi
         v-for="todo in todos"
         :key="todo.id"
-        :title="todo"
-        :clearTodos="clearTodos"
+        :title="todo"        
         @clearTodos='clearTodos'
       />
-      <!-- <router-view></router-view> -->
     </ul>
   </section>
 </template>
